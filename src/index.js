@@ -1,21 +1,11 @@
 module.exports = function check(str, bracketsConfig) {
-  var round = ['()'];
-  var square = ['[]'];
-  var curved = ['{}'];
-  var straight = ['||'];
-  for(let i = 0; i <= str.length; i++){
-    if(str.includes(round)) {
-     str = str.replace(round, "");
+  for (let i = 0; i < bracketsConfig.length;){
+    var sequence = bracketsConfig[i].join("");
+    if (str.includes(sequence)) {
+      str = str.replace(sequence, "");
+      i = 0;
     }
-    else if(str.includes(square)) {
-      str = str.replace(square, "");
-    }
-    else if(str.includes(curved)) {
-      str = str.replace(curved, "");
-    }
-    else if(str.includes(straight)) {
-      str = str.replace(straight, "");
-    }
+    else i++;
   }
   return str.length ? false : true;
-}
+  }
